@@ -58,7 +58,7 @@ function Card({id, name, status, species, gender, origin, image, onClose, remove
 
          <div className={`${style.face} ${estado}`}>
 
-               <Link to={`'/detail/'${id}`}>
+               <Link to={`/detail/${id}`}>
                <div className={style.nombreBack}>{name}</div>  
                </Link>
 

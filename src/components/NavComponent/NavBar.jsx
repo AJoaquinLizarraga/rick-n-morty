@@ -1,5 +1,5 @@
 import SearchBar from "../SearchBarComponent/SearchBar";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import './NavBar.module.css'
 
 
@@ -10,16 +10,19 @@ const Nav = ({onSearch, random}) =>{
   //  }
   return(
 
-    <nav className="nav"> <SearchBar onSearch = {onSearch} random={random}/> 
+    <nav className="nav"> 
 
     <button>
-      <Link to= '/about' > ABOUT </Link>
+      <NavLink className='NavUl' to= '/home' > HOME </NavLink>
     </button>
     <button>
-      <Link to= '/home' > HOME </Link>
+      <NavLink to= '/favorites'> FAVORITOS </NavLink>
     </button>
+
+    <SearchBar onSearch = {onSearch} random={random}/> 
+
     <button>
-      <Link to= '/favorites'> FAVORITOS </Link>
+      <NavLink to= '/about' > ABOUT </NavLink>
     </button>
 
     </nav>

@@ -2,6 +2,7 @@ import style from './Card.module.css'
 import './Card.module.css'
 import { Link } from 'react-router-dom';
 import { AiFillCloseCircle } from  "react-icons/ai";
+import { MdFavorite } from "react-icons/md"
 import { useState, useEffect } from 'react';
 import { addFav } from '../../redux/actions';
 import { removeFav } from '../../redux/actions';
@@ -66,7 +67,7 @@ function Card({id, name, status, species, gender, origin, image, onClose, remove
                <h3>{species}</h3>
                <h3>{gender}</h3>
                <h3>{origin}</h3>
-               <button className={style.closeButton} onClick={() => onClose(id)}><AiFillCloseCircle/></button> 
+               {!isFav? <button className={style.closeButton} onClick={() => onClose(id)}><AiFillCloseCircle/></button> : null} 
                
          </div>
          

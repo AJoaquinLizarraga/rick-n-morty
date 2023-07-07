@@ -1,8 +1,8 @@
 
 .card {
  position: relative;
- width: 300px;
- height: 350px;
+ width: 270px;
+ height: 320px;
  margin-top: 10px;
  margin-bottom: 10px;
 }
@@ -55,7 +55,7 @@
 
 .backAlive{
   transform: perspective(600px) rotateY(180deg);
-  background-color: rgba(48, 37, 37, 0.9);
+  background: rgb(3, 35, 54);
   color: aliceblue;
   display:flex;
   flex-direction: column;
@@ -115,4 +115,16 @@
   color: rgba(213, 35, 222, 0.755)
 }
 
-
+.favorite{
+  visibility: hidden;
+}
+.favorite svg{
+  visibility: visible;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  color: rgba(213, 35, 222, 0.755)
+}

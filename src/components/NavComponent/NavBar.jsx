@@ -13,7 +13,7 @@ const Nav = ({onSearch, random}) =>{
     <nav className="nav"> 
 
     <button>
-      <NavLink className='NavUl' to= '/home' > HOME </NavLink>
+      <NavLink to= '/home' > HOME </NavLink>
     </button>
     <button>
       <NavLink to= '/favorites'> FAVORITOS </NavLink>

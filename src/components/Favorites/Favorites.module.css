@@ -1,7 +1,8 @@
 
 .cardList {
   gap: 1em;
-  display: flex;
+  display: inline-flex;
+
   flex-wrap: wrap;
   width: 100%;
   /* height: 100%; */

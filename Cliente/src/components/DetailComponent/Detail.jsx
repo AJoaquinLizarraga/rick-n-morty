@@ -30,7 +30,7 @@ const Detail = ()=> {
   return(
     <div>
       
-        <h1>esto es una cagada</h1>
+        <h1>asdfasdf</h1>
         <h2>{character?.name}</h2>
         <h2>{character?.status}</h2>
         <h2>{character?.species}</h2>

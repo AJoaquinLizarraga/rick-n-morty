@@ -11,8 +11,8 @@ http.createServer((request, response)=>{
     console.log(request.url)
     const characterId = request.url.split('/').at(-1);
     console.log(characterId); // id por url
-    const characters = [...data]
-    console.log(characters);
+    // const characters = [...data]
+    // console.log(characters);
     const identificacion = data.find((character) => character.id === Number(characterId))
     console.log(identificacion);
 

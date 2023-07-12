@@ -15,7 +15,7 @@ const Favorites = ({ myFavorites, onClose }) => {
 
     const handleOrder = (event) =>{
         dispatch(orderCards(event.target.value))
-        setCharacters(!character)
+        // setCharacters(!character)
     }
     const handleFilter = (event) =>{
         dispatch(filterCards(event.target.value))

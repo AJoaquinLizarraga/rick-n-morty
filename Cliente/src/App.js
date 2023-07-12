@@ -59,12 +59,12 @@ function App() {
 //   }
 const random = async () => {
    try {
-     const response = await fetch(`http://localhost:3001/rickandmorty/character/`);
+     const response = await fetch(`https://rickandmortyapi.com/api/character`);
      const data = await response.json();
-     const randomId = Math.floor(Math.random() * 5);
+     const randomId = Math.floor(Math.random() * data.info.count);
  
      const characterResponse = await axios.get(
-       `http://localhost:3001/rickandmorty/character/${randomId}`
+       `https://rickandmortyapi.com/api/character/${randomId}`
      );
  
      const characterData = characterResponse.data;

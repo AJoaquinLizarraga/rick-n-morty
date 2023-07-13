@@ -67,7 +67,7 @@ function Card({id, name, status, species, gender, origin, image, onClose, remove
                <h3>{species}</h3>
                <h3>{gender}</h3>
                <h3>{origin}</h3>
-               {!isFav? <button className={style.closeButton} onClick={() => onClose(id)}><AiFillCloseCircle/></button> : null} 
+               <button className={style.closeButton} onClick={() => onClose(id)}><AiFillCloseCircle/></button> 
                
          </div>
          

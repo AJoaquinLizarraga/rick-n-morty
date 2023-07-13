@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
         myFavorites:
         action.payload === 'allCharacters'
         ? [...state.allCharacters]
-        : [...state.allCharacters.filter(char => char.gender == action.payload)]
+        : [...state.allCharacters.filter(char => char.gender === action.payload)]
       }
 
     case ORDER:

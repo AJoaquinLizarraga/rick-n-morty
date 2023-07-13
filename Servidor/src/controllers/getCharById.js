@@ -4,37 +4,31 @@ const axios = require('axios')
 
 
 
-const getCharById = (response, id) =>{
-  // const personajes = {}
+const getCharById = (response, id) =>{ // este response es es el que viene del servidor
+
   axios(`https://rickandmortyapi.com/api/character/${id}`)
   .then(response => response.data)
   .then(data => {
-    if(data.name){
-      const personajes = {
-        key: data.id,
-        id: data.id,
+      const personaje = {
+        id: id, //aqui id es el del parametro, pero puede ser data.id
         name: data.name,
         gender: data.gender,
         species: data.species,
-        origin: data.origin.name,
+        origin: data.origin, // desde el front se manda el .name, aqui se manda el objeto entero
         image: data.image,
         status: data.status
       } 
-      // console.log(personajes)
-      return response.writeHead(200, { "Content-type": "application/json"})
-      
-      .end(JSON.stringify(personajes))
-    }
+      return response
+                    .writeHead(200, { "Content-type": "application/json"}) //aqui se indica el tipo de formato tipo json
+                    .end(JSON.stringify(personaje))
   })
   .catch( error => {
-    return response.writeHead(500, { "Content-type": "text/plain"})
-    .end(error.message)
+      return response
+                    .writeHead(500, { "Content-type": "text/plain"})
+                    .end(error.message)
   }
   )
 }
   
-
-
-// console.log(data)
 
 module.exports = getCharById;

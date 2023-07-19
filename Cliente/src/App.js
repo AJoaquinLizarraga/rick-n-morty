@@ -25,38 +25,78 @@ function App() {
    // const email = "abel@gmail.com";
    // const pass = 'qwerty123456';
 
-   const login = (userData, email='abel@gmail.com', pass = 'qwerty123456') => {
-      if(userData.email === email && userData.password === pass) {
-         setAccess(true);
-         navigate('/home');
-      }
-    }
+/*                                  LOGIN                                  */
+   // function login(userData) {
+   //    const { email, password } = userData;
+   //    const URL = 'http://localhost:3001/rickandmorty/login/';
+   //    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+   //       const { access } = data;
+   //       setAccess(data);
+   //       access && navigate('/home');
+   //    });
+   // }
+   // useEffect(() => {
+   //    !access && navigate('/')
+   // }, [access] )
 
-   useEffect(() => {
-      !access && navigate('/')
-   }, [access] )
+/*                                END LOGIN                                */
+/*                                  LOGIN                                  */
+async function login(userData) {
+   try {
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      const { data } = await axios(URL + `?email=${email}&password=${password}`)
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
+      
+   } catch (error) {
+      return alert('error de email o contraseña')
+   }
+}
+useEffect(() => {
+   !access && navigate('/')
+}, [access] )
+   
+/*                                END LOGIN                                */
 
    
-   const onSearch = (id) => {
+   // const onSearch = (id) => {
 
-      if (addedChars.includes(Number(id))) return;
+   //    if (addedChars.includes(Number(id))) return;
 
-      axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then( response => response.data)
-      .then(( data ) => {
-         if (data.name) {
-            setCharacters((oldChars) => [...oldChars, data]);
-            setAddedChars([...addedChars, data.id].sort((a, b) => b - a))
-         } 
-         else {
-            alert('¡No hay personajes con este ID!');
-         }
-      }).catch(error=>alert("No se encontró el ID!!!"));
+   //    axios(`http://localhost:3001/rickandmorty/character/${id}`)
+   //    .then( response => response.data)
+   //    .then(( data ) => {
+   //       if (data.name) {
+   //          setCharacters((oldChars) => [...oldChars, data]);
+   //          setAddedChars([...addedChars, data.id].sort((a, b) => b - a))
+   //       } 
+   //       else {
+   //          alert('¡No hay personajes con este ID!');
+   //       }
+   //    }).catch(error=>alert("No se encontró el ID!!!"));
+   // } //esto es sin async await, de forma original
+
+/*                            FUNCION onSearch                             */
+   const onSearch = async (id) => {
+      try {
+         if (addedChars.includes(Number(id))) return;
+         
+         const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+
+            if (data.name) {
+               setCharacters((oldChars) => [...oldChars, data]);
+               setAddedChars([...addedChars, data.id].sort((a, b) => b - a))
+            } 
+                    
+      } catch (error) {
+          return alert("No se encontró el ID!!!" + error)
+      }
    }
-//    const random = () => {
-//       const randomId = Math.floor(Math.random() * availableChars)
-//       onSearch(randomId)
-//   }
+/*                           END FUNCION onSearch                           */
+
+/*                              FUNCION random                              */
 const random = async () => {
    try {
      const response = await fetch(`https://rickandmortyapi.com/api/character`);
@@ -79,14 +119,18 @@ const random = async () => {
      alert('No se encontró el ID!!!');
    }
  };
+/*                           END FUNCION random                           */
 
+/*                             FUNCION onClose                            */
    const onClose = (id)=>{
       const characterFilter = characters.filter(character=>character.id !== Number(id));
        //setCharacters([...characters, characterFilter])
       setCharacters(characterFilter)
       removeFav(id)
    }
+/*                          END FUNCION onClose                           */
 
+/*                                 RENDER                                 */
    return (
      
         
@@ -103,7 +147,7 @@ const random = async () => {
 
             <Route path="/home" element={<Cards characters={characters}  onClose={onClose} />}/>
 
-            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/favorites" element={<Favorites onClose={onClose} />} />
 
             <Route path="/detail/:id" element={<Detail />} />
             
@@ -117,6 +161,7 @@ const random = async () => {
       </div>
      
    );
+/*                               END RENDER                                */
 }
 
 const mapDispatchToProps = (dispatch) => {

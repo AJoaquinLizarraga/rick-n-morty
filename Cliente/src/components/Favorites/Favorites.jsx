@@ -48,7 +48,7 @@ const Favorites = ({ myFavorites, onClose }) => {
                     gender={character.gender}
                     origin={character.origin}
                     image={character.image}
-                    onClose={character.onClose}
+                    onClose={onClose}
                 />)
             )}
         </div>
